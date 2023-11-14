@@ -170,6 +170,10 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    if (invoice.length === 0) {
+      throw new Error(`No invoice found with id: ${id}`);
+    }
+
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
